@@ -1,4 +1,4 @@
-# kanban-back
+# Startup POC
 
 [Swagger] http://localhost:8080/swagger-ui.html
 
