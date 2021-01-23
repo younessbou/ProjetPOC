@@ -15,25 +15,25 @@ import lombok.Data;
 @Data
 @Entity
 public class Projet {
-	private @Id Long id;
+	private @Id @GeneratedValue Long id;
 	private String nom;
 	
-	@ManyToMany(mappedBy="projets", fetch=FetchType.EAGER)
-	private Set<User> users;
+	//@ManyToMany(mappedBy="projets", fetch=FetchType.EAGER)
+	//private Set<User> users;
 	
-	@ManyToMany
-	private Set<Temps> temps;
+	//@ManyToMany
+	//private Set<Temps> temps;
 
-	public Projet(Long id, String nom, Set<User> users, Set<Temps> temps) {
+	public Projet(Long id, String nom) {
 		super();
 		this.id = id;
 		this.nom = nom;
-		this.users = users;
-		this.temps = temps;
+		//this.users = users;
+		//this.temps = temps;
 	}
 
 	public Projet() {
-		this.users = new HashSet<>();
+		//this.users = new HashSet<>();
 	}
 
 	

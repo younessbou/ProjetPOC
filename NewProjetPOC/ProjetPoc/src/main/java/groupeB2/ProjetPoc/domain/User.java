@@ -1,5 +1,7 @@
 package groupeB2.ProjetPoc.domain;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -11,7 +13,7 @@ import lombok.Data;
 @Data
 @Entity
 public class User {
-	private @Id long id;
+	private @Id @GeneratedValue long id;
 	
 	private String nom;
 	private String prenom;
@@ -19,11 +21,11 @@ public class User {
 	private String login;
 	
 	
-	@ManyToMany 
-	private Set<Temps> temps;
+	//@ManyToMany 
+	//private Set<Temps> temps;
 	
-	@ManyToMany 
-	private Set<Projet> projets;
+	//@ManyToMany 
+	//private Set<Projet> projets;
 	
 	public User(long id, String nom, String prenom, String password, String login) {
 		super();
@@ -33,16 +35,18 @@ public class User {
 		this.password = password;
 		this.login = login;
 	}
-
+	
+	
 	public User() {
 		
-		this.projets = new HashSet<>();
+	//	this.projets = new HashSet<>();
 	}
+	
 	
 	
 	public void addProjet(Projet projet) {
 		
-		projet.getUsers().add(this);
-		this.projets.add(projet);
+		//projet.getUsers().add(this);
+		//this.projets.add(projet);
 	}
 }

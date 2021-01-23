@@ -1,4 +1,4 @@
-package TimeRepository;
+package groupeB2.ProjetPoc.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
