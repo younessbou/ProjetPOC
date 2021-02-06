@@ -1,5 +1,7 @@
 package groupeB2.ProjetPoc.Utils;
 
+import java.util.Optional;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,10 +15,10 @@ import groupeB2.ProjetPoc.domain.Manager;
 import groupeB2.ProjetPoc.domain.Projet;
 import groupeB2.ProjetPoc.domain.Temps;
 import groupeB2.ProjetPoc.domain.User;
-import lombok.extern.slf4j.Slf4j;
+
 
 @Configuration
-@Slf4j
+
 public class LoadDatabase {
 	
 	@Bean
@@ -31,6 +33,25 @@ public class LoadDatabase {
 			initUser(userRepository);
 			
 			initManager(managerRepository);
+			
+			User albert = new User();
+			albert.setLogin("zz");
+			albert.setNom("einstein");
+			albert.setPrenom("albert");
+			albert.setPassword("ez");
+			
+			
+			Projet projet1= new Projet();
+			projet1.setNom("POCa");
+			projetRepository.save(projet1);		
+			Temps temp1= new Temps();
+			temp1.setNbhours(2);
+			tempsRepository.save(temp1);
+			albert.addProjet(projet1);
+			albert.addTime(temp1, projet1);
+			userRepository.save(albert);
+			projetRepository.save(projet1);	
+			tempsRepository.save(temp1);	
 		};
 		
 	}
@@ -50,13 +71,7 @@ public class LoadDatabase {
 	private void initUser(UserRepository userRepository) {
 		// TODO Auto-generated method stub
 		
-		User albert = new User();
-		albert.setLogin("zz");
-		albert.setNom("einstein");
-		albert.setPrenom("albert");
-		albert.setPassword("ez");
-		userRepository.save(albert);
-		
+	
 		User albert1 = new User();
 		albert1.setLogin("fr");
 		albert1.setNom("rfrf");
@@ -75,9 +90,9 @@ public class LoadDatabase {
 	}
 
 	private void initProjet(ProjetRepository projetRepository) {
-		Projet projet1= new Projet();
-		projet1.setNom("POC");
-		projetRepository.save(projet1);
+		Projet projet2= new Projet();
+		projet2.setNom("POCb");
+		projetRepository.save(projet2);
 	}
 	
 }

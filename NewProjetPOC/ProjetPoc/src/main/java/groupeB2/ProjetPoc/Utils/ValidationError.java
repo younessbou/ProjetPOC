@@ -3,7 +3,7 @@ package groupeB2.ProjetPoc.Utils;
 
 import lombok.Data;
 
-@Data
+@Data 
 public class ValidationError {
 
 	private String field;

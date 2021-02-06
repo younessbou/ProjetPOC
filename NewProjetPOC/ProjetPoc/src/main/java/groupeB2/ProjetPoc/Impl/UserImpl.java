@@ -1,6 +1,7 @@
 package groupeB2.ProjetPoc.Impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,12 @@ public class UserImpl implements UserService{
 	public List<User> findAllUsers() {
 		// TODO Auto-generated method stub
 		return this.userRepository.findAll();
+	}
+
+	@Override
+	public Optional<User> findUserById(Long id) {
+		// TODO Auto-generated method stub
+		return this.userRepository.findById(id);
 	}
 	
 

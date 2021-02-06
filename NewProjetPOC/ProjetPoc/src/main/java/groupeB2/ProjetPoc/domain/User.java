@@ -5,10 +5,17 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -20,12 +27,19 @@ public class User {
 	private String password;
 	private String login;
 	
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	@ManyToMany
+	@JsonIgnoreProperties({"users","tempss"})
+	private Set<Projet> projets;
 	
-	//@ManyToMany 
-	//private Set<Temps> temps;
+	@OneToMany 
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	@JsonIgnoreProperties({"user","tempss"})
+	private Set<Temps> tempss;
 	
-	//@ManyToMany 
-	//private Set<Projet> projets;
+	
 	
 	public User(long id, String nom, String prenom, String password, String login) {
 		super();
@@ -39,14 +53,19 @@ public class User {
 	
 	public User() {
 		
-	//	this.projets = new HashSet<>();
+		this.projets = new HashSet<>();
+		
+		this.tempss= new HashSet<>();
 	}
 	
-	
-	
-	public void addProjet(Projet projet) {
-		
-		//projet.getUsers().add(this);
-		//this.projets.add(projet);
+	public void addProjet(Projet proj) {
+		proj.getUsers().add(this);
+		this.getProjets().add(proj);
+	}
+	public void addTime(Temps time,Projet proj) {
+		proj.getTempss().add(time);
+		time.setUser(this);
+		time.setProjet(proj);
+		this.getTempss().add(time);
 	}
 }

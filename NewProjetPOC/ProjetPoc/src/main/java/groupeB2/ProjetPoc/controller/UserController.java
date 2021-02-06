@@ -19,8 +19,9 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping("/users")
-	Collection<User> findAllTasks() {
+	Collection<User> findAllUsers() {
 		return this.userService.findAllUsers();
 	}
 
+	
 }

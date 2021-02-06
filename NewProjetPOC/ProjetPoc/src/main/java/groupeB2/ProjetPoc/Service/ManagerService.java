@@ -2,8 +2,10 @@ package groupeB2.ProjetPoc.Service;
 
 import java.util.List;
 
-import groupeB2.ProjetPoc.domain.Manager;
+import org.springframework.stereotype.Service;
 
+import groupeB2.ProjetPoc.domain.Manager;
+@Service
 public interface ManagerService {
 
 	public List<Manager> findAllManagers();

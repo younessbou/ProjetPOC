@@ -22,7 +22,7 @@ public class ManagerController {
 	private ManagerService userService;
 	
 	@GetMapping("/managers")
-	Collection<Manager> findAllTasks() {
+	Collection<Manager> findAllManagers() {
 		return this.userService.findAllManagers();
 	}
 	
