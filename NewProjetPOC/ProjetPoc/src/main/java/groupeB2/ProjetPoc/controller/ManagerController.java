@@ -9,6 +9,7 @@ import org.apache.catalina.manager.ManagerServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,9 +41,9 @@ public class ManagerController {
 	}
 	
 	@PostMapping("/managers_projets")
-	Set<Projet> add_projet(@Valid @RequestBody Projet projet) {
+	Set<Projet> add_projet(@Valid @RequestBody Projet projet,@PathVariable Long id) {
 		
-		return this.managersService.Add_projet(projet);
+		return this.managersService.Add_projet(projet,id);
 	}
 	
 	@GetMapping("/managers/{id}/times")

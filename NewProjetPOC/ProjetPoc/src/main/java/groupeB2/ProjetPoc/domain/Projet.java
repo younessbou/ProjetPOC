@@ -46,7 +46,6 @@ public class Projet {
 	
 	public Projet(Long id, String nom) {
 		super();
-		this.id = id;
 		this.nom = nom;
 	}
 	

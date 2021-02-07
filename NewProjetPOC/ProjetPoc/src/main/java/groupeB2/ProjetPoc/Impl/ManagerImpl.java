@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import groupeB2.ProjetPoc.Service.ManagerService;
 import groupeB2.ProjetPoc.dao.ManagerRepository;
+import groupeB2.ProjetPoc.dao.ProjetRepository;
 import groupeB2.ProjetPoc.domain.Manager;
 import groupeB2.ProjetPoc.domain.Projet;
 import groupeB2.ProjetPoc.domain.Temps;
@@ -23,6 +24,9 @@ public class ManagerImpl implements ManagerService {
 	
 	@Autowired
 	private ManagerRepository managerRepository;
+	
+	@Autowired
+	private ProjetRepository projetRepository;
 	
 	@Override
 	public List<Manager> findAllManagers() {
@@ -38,9 +42,11 @@ public class ManagerImpl implements ManagerService {
 	}
 
 	@Override
-	public Set<Projet> Add_projet(@Valid Projet projet) {
-		Manager manager=projet.getManager();
+	public Set<Projet> Add_projet(@Valid Projet projet, Long id) {
+		Manager manager=managerRepository.getOne(id);
 		manager.addProjet(projet);
+		projetRepository.save(projet);
+		managerRepository.save(manager);
 		return manager.getProjets();
 	}
 
