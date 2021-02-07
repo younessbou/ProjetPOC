@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,9 +32,10 @@ public class UserController {
 	}
 	
 	@PostMapping("/users_time")
-	Temps set_time(@Valid @RequestBody Temps temps) {
+	//Id1 l'id du user Id2 id du projet
+	Temps set_time(@PathVariable Long id1, @PathVariable Long id2, @PathVariable Long nbhours) {
 		
-		return this.userService.Set_Time(temps);
+		return this.userService.Set_Time(id1,id2,nbhours);
 	}
 	
 }

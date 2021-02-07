@@ -17,5 +17,5 @@ public interface UserService {
 
 	public Optional<User> findUserById(Long id);
 
-	public Temps Set_Time(@Valid Temps temps);
+	public Temps Set_Time(long id1,long id2,long nbhours);
 }

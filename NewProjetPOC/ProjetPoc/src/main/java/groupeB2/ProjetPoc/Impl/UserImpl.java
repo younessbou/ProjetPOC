@@ -36,14 +36,18 @@ public class UserImpl implements UserService{
 		return this.userRepository.findById(id);
 	}
 
+	
+
 	@Override
-	public Temps Set_Time(@Valid Temps temps) {
-		Projet projet=temps.getProjet();
+	public Temps Set_Time(long id1, long id2, long nbhours) {
+		User user= userRepository.getOne(id1);
+		Projet projet=projetRepository.getOne(id2);
+		Temps temps=new Temps(nbhours);
+		temps.setProjet(projet);
+		temps.setUser(user);
 		projetRepository.save(projet);
-		User user=temps.getUser();
 		userRepository.save(user);
-		return tempsRepository.save(temps);
+		tempsRepository.save(temps);
+		return temps;
 	}
-
-
 }
