@@ -43,8 +43,7 @@ public class UserImpl implements UserService{
 		User user= userRepository.getOne(id1);
 		Projet projet=projetRepository.getOne(id2);
 		Temps temps=new Temps(nbhours);
-		temps.setProjet(projet);
-		temps.setUser(user);
+		user.addTime(temps, projet);
 		projetRepository.save(projet);
 		userRepository.save(user);
 		tempsRepository.save(temps);
