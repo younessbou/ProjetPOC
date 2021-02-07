@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -28,14 +29,20 @@ public class Projet {
 	@OneToMany
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@JsonIgnoreProperties({"projets","tempss","projet"})
+	@JsonIgnoreProperties({"projets","tempss","manager","password","login"})
 	private Set<Temps> tempss;
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@ManyToMany
-	@JsonIgnoreProperties({"projets","tempss","projet"})
+	@JsonIgnoreProperties({"projets","tempss","manager","password","login"})
 	private Set<User> users;
+	
+	@ManyToOne
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	@JsonIgnoreProperties({"users","tempss","manager","projets","password","login"})
+	private Manager manager;
 	
 	public Projet(Long id, String nom) {
 		super();

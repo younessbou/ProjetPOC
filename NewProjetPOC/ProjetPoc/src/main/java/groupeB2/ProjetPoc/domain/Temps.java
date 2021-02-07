@@ -25,13 +25,13 @@ public class Temps {
 	@ManyToOne 
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@JsonIgnoreProperties({"tempss","projets"})
+	@JsonIgnoreProperties({"tempss","projets","manager","password","login"})
 	User user;
 	
 	@ManyToOne 
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@JsonIgnoreProperties({"tempss","users"})
+	@JsonIgnoreProperties({"tempss","users","manager","password","login"})
 	Projet projet;
 	
 	

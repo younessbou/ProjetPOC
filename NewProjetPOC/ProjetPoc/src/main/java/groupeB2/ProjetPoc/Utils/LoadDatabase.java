@@ -50,8 +50,18 @@ public class LoadDatabase {
 			albert.addProjet(projet1);
 			albert.addTime(temp1, projet1);
 			userRepository.save(albert);
-			projetRepository.save(projet1);	
 			tempsRepository.save(temp1);	
+			Manager manager1 = new Manager();
+			manager1.setLogin("man2");
+			manager1.setNom("mana2");
+			manager1.setPrenom("aze2");
+			manager1.setPassword("azerty2");
+			manager1.addProjet(projet1);
+			manager1.addUser(albert);
+			managerRepository.save(manager1);
+			projetRepository.save(projet1);	
+			userRepository.save(albert);
+			
 		};
 		
 	}
