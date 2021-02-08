@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import groupeB2.ProjetPoc.Service.ManagerService;
 import groupeB2.ProjetPoc.dao.ManagerRepository;
 import groupeB2.ProjetPoc.dao.ProjetRepository;
+import groupeB2.ProjetPoc.dao.UserRepository;
 import groupeB2.ProjetPoc.domain.Manager;
 import groupeB2.ProjetPoc.domain.Projet;
 import groupeB2.ProjetPoc.domain.Temps;
@@ -29,6 +30,9 @@ public class ManagerImpl implements ManagerService {
 	@Autowired
 	private ProjetRepository projetRepository;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	@Override
 	@Transactional
 	public List<Manager> findAllManagers() {
@@ -38,10 +42,12 @@ public class ManagerImpl implements ManagerService {
 
 	@Override
 	@Transactional
-	public Set<User> Add_user(@Valid User user) {
-		Manager manager=user.getManager();
+	public Manager Add_user(Long id,User user) {
+		userRepository.save(user);
+		Manager manager=managerRepository.getOne(id);
 		manager.addUser(user);
-		return manager.getUsers();
+		managerRepository.save(manager);
+		return null;
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.validation.Valid;
 
 import org.apache.catalina.manager.ManagerServlet;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,10 +35,16 @@ public class ManagerController {
 		return this.managersService.findAllManagers();
 	}
 	
-	@PostMapping("/managers_user")
-	Set<User> add_user(@Valid @RequestBody User user) {
-		
-		return this.managersService.Add_user(user);
+	@PostMapping("/managers_user/{id}")
+	Manager add_user(@PathVariable(value = "id") Long id, @RequestBody String request) {
+		JSONObject obj = new JSONObject(request);
+		String nom=obj.getString("nom");
+	
+		String prenom = obj.getString("prenom");
+		String password = obj.getString("password");
+		String login = obj.getString("login");
+		User user=new User(nom,prenom,password,login);
+		return this.managersService.Add_user(id,user);
 	}
 	
 	@PostMapping("/managers_projets")

@@ -16,7 +16,7 @@ public interface ManagerService {
 
 	public List<Manager> findAllManagers();
 
-	public Set<User> Add_user(@Valid User user);
+	public Manager Add_user(Long id, @Valid User user);
 
 	public Set<Projet> Add_projet(@Valid Projet projet, Long id);
 

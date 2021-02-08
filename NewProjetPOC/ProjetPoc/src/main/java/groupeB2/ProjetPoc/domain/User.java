@@ -48,9 +48,8 @@ public class User {
 	@JsonIgnoreProperties({"users","tempss","projets","password","login"})
 	private Manager manager;
 	
-	public User(long id, String nom, String prenom, String password, String login) {
-		super();
-		this.id = id;
+	public User(String nom, String prenom, String password, String login) {
+		
 		this.nom = nom;
 		this.prenom = prenom;
 		this.password = password;
