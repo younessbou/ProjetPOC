@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import groupeB2.ProjetPoc.Service.ProjetService;
 import groupeB2.ProjetPoc.dao.ProjetRepository;
@@ -16,6 +17,7 @@ public class ProjetIml implements ProjetService {
 	private ProjetRepository projetRepository;
 
 	@Override
+	@Transactional
 	public List<Projet> findAllProjets() {
 		// TODO Auto-generated method stub
 		return this.projetRepository.findAll();

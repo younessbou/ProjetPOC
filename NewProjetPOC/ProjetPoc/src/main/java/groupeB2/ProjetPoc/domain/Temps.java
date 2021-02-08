@@ -18,24 +18,25 @@ import lombok.ToString;
 @Data
 @Entity
 public class Temps {
-	private @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	Long id;
+	@Id @GeneratedValue 
+	private  Long id;
 	private long nbhours;
 	
 	@ManyToOne 
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@JsonIgnoreProperties({"tempss","projets","manager","password","login"})
+	@JsonIgnoreProperties({"tempss","projets","manager","password","login", "projet"})
 	User user;
 	
 	@ManyToOne 
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@JsonIgnoreProperties({"tempss","users","manager","password","login"})
+	@JsonIgnoreProperties({"tempss","users","manager","password","login", "projet"})
 	Projet projet;
 	
 	
-	public Temps(long nbhours) {
+	public Temps(long nbhours, Long id) {
+		this.id = id;
 		this.nbhours = nbhours;
 	}
 	

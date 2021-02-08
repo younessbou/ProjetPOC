@@ -27,7 +27,7 @@ private @Id @GeneratedValue long id;
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@OneToMany
+	@OneToMany 
 	@JsonIgnoreProperties({"projets","tempss","projet","manager","password","login"})
 	private Set<User> users;
 	

@@ -9,7 +9,7 @@ import groupeB2.ProjetPoc.domain.Manager;
 import groupeB2.ProjetPoc.domain.User;
 import groupeB2.ProjetPoc.domain.Admin;
 
-@Service
+
 public interface AdminService {
 
 	Manager changeUserToManager(Long id);

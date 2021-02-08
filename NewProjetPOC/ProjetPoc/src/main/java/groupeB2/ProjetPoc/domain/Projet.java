@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,10 +27,10 @@ public class Projet {
 	
 
 	
-	@OneToMany
+	@OneToMany  
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@JsonIgnoreProperties({"projets","tempss","manager","password","login"})
+	@JsonIgnoreProperties({"projets","tempss","manager","password","login", "projet"})
 	private Set<Temps> tempss;
 	
 	@ToString.Exclude
@@ -38,7 +39,7 @@ public class Projet {
 	@JsonIgnoreProperties({"projets","tempss","manager","password","login"})
 	private Set<User> users;
 	
-	@ManyToOne
+	@ManyToOne (cascade = {CascadeType.MERGE})
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@JsonIgnoreProperties({"users","tempss","manager","projets","password","login"})

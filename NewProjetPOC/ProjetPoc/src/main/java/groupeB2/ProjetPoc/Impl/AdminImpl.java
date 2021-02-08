@@ -7,6 +7,7 @@ import javax.persistence.OneToMany;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -32,6 +33,7 @@ public class AdminImpl implements AdminService{
 	private AdminRepository adminRepository;
 	
 	@Override
+	@Transactional
 	public Manager changeUserToManager(Long id) {
 		User user=userRepository.getOne(id);
 		String nom=user.getNom();
@@ -45,12 +47,14 @@ public class AdminImpl implements AdminService{
 	}
 
 	@Override
+	@Transactional
 	public Collection<Admin> findAllAdmin() {
 
 		return this.adminRepository.findAll();
 	}
 
 	@Override
+	@Transactional
 	public User changeManager(Long id1, Long id2) {
 		User user=userRepository.getOne(id1);
 		Manager manager=managerRepository.getOne(id2);

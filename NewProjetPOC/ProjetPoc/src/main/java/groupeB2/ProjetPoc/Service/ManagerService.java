@@ -11,7 +11,7 @@ import groupeB2.ProjetPoc.domain.Manager;
 import groupeB2.ProjetPoc.domain.Projet;
 import groupeB2.ProjetPoc.domain.Temps;
 import groupeB2.ProjetPoc.domain.User;
-@Service
+
 public interface ManagerService {
 
 	public List<Manager> findAllManagers();

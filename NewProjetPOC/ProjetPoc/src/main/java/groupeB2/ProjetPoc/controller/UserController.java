@@ -1,6 +1,7 @@
 package groupeB2.ProjetPoc.controller;
 
 import java.util.Collection;
+import org.json.*;
 
 import javax.validation.Valid;
 
@@ -31,11 +32,14 @@ public class UserController {
 		return this.userService.findAllUsers();
 	}
 	
-	@PostMapping("/users_time")
 	//Id1 l'id du user Id2 id du projet
-	Temps set_time(@PathVariable Long id1, @PathVariable Long id2, @PathVariable Long nbhours) {
+	@PostMapping("/users_time/{id1}")
+	Temps set_time(@PathVariable(value = "id1") Long id1, @RequestBody String request) {
+		JSONObject obj = new JSONObject(request);
+		Long id=obj.getLong("id");
+		long nbhours=obj.getLong("nbhours");
 		
-		return this.userService.Set_Time(id1,id2,nbhours);
+		return this.userService.Set_Time(id1, id,nbhours);
 	}
 	
 }

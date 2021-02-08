@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import groupeB2.ProjetPoc.Service.ManagerService;
 import groupeB2.ProjetPoc.dao.ManagerRepository;
@@ -29,12 +30,14 @@ public class ManagerImpl implements ManagerService {
 	private ProjetRepository projetRepository;
 	
 	@Override
+	@Transactional
 	public List<Manager> findAllManagers() {
 		// TODO Auto-generated method stub
 		return this.managerRepository.findAll();
 	}
 
 	@Override
+	@Transactional
 	public Set<User> Add_user(@Valid User user) {
 		Manager manager=user.getManager();
 		manager.addUser(user);
@@ -42,6 +45,7 @@ public class ManagerImpl implements ManagerService {
 	}
 
 	@Override
+	@Transactional
 	public Set<Projet> Add_projet(@Valid Projet projet, Long id) {
 		Manager manager=managerRepository.getOne(id);
 		manager.addProjet(projet);
@@ -51,6 +55,7 @@ public class ManagerImpl implements ManagerService {
 	}
 
 	@Override
+	@Transactional
 	public Set<Temps> findAllTime(Long id) {
 		Manager manager=managerRepository.getOne(id);
 		Set<Temps> Tempss=new HashSet<Temps>() ;

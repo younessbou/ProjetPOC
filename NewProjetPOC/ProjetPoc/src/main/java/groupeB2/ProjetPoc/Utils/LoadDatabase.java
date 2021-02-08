@@ -45,10 +45,11 @@ public class LoadDatabase {
 			projet1.setNom("POCa");
 			projetRepository.save(projet1);		
 			Temps temp1= new Temps();
+			
 			temp1.setNbhours(2);
 			tempsRepository.save(temp1);
 			albert.addProjet(projet1);
-			albert.addTime(temp1, projet1);
+
 			userRepository.save(albert);
 			tempsRepository.save(temp1);	
 			Manager manager1 = new Manager();

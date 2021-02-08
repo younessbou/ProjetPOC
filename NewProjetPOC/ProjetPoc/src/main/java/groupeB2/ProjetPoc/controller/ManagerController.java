@@ -46,8 +46,8 @@ public class ManagerController {
 		return this.managersService.Add_projet(projet,id);
 	}
 	
-	@GetMapping("/managers/{id}/times")
-	Set<Temps> findAlltime(Long  id){
+	@GetMapping("/managers/times/{id}")
+	Set<Temps> findAlltime(@PathVariable Long id){
 		return this.managersService.findAllTime(id);
 	}
 }

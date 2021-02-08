@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -74,4 +75,6 @@ public class User {
 		time.setProjet(proj);
 		this.getTempss().add(time);
 	}
+	
+
 }
