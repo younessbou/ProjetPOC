@@ -45,7 +45,7 @@ public class Projet {
 	@JsonIgnoreProperties({"users","tempss","manager","projets","password","login"})
 	private Manager manager;
 	
-	public Projet(Long id, String nom) {
+	public Projet(String nom) {
 		super();
 		this.nom = nom;
 	}

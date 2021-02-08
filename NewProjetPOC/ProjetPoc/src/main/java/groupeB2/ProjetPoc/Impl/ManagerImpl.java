@@ -52,12 +52,12 @@ public class ManagerImpl implements ManagerService {
 
 	@Override
 	@Transactional
-	public Set<Projet> Add_projet(@Valid Projet projet, Long id) {
+	public Manager Add_projet(Long id,Projet projet) {
 		Manager manager=managerRepository.getOne(id);
 		manager.addProjet(projet);
 		projetRepository.save(projet);
 		managerRepository.save(manager);
-		return manager.getProjets();
+		return null;
 	}
 
 	@Override

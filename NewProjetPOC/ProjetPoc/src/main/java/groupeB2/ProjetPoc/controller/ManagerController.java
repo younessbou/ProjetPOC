@@ -47,10 +47,12 @@ public class ManagerController {
 		return this.managersService.Add_user(id,user);
 	}
 	
-	@PostMapping("/managers_projets")
-	Set<Projet> add_projet(@Valid @RequestBody Projet projet,@PathVariable Long id) {
-		
-		return this.managersService.Add_projet(projet,id);
+	@PostMapping("/managers_projets/{id}")
+	Manager add_projet(@PathVariable(value = "id") Long id, @RequestBody String request) {
+		JSONObject obj = new JSONObject(request);
+		String nom=obj.getString("nom");
+		Projet projet=new Projet(nom);
+		return this.managersService.Add_projet(id, projet);
 	}
 	
 	@GetMapping("/managers/times/{id}")

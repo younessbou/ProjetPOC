@@ -18,7 +18,7 @@ public interface ManagerService {
 
 	public Manager Add_user(Long id, @Valid User user);
 
-	public Set<Projet> Add_projet(@Valid Projet projet, Long id);
+	public Manager Add_projet(Long id,Projet projet);
 
 	public Set<Temps> findAllTime(Long id);
 
