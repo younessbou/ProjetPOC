@@ -22,4 +22,6 @@ public interface ManagerService {
 
 	public Set<Temps> findAllTime(Long id);
 
+	public Manager Add_projet_to_user(Long id, Long id1, Long id2);
+
 }

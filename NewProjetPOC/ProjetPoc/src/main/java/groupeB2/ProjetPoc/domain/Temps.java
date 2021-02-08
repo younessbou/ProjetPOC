@@ -35,8 +35,7 @@ public class Temps {
 	Projet projet;
 	
 	
-	public Temps(long nbhours, Long id) {
-		this.id = id;
+	public Temps(long nbhours) {
 		this.nbhours = nbhours;
 	}
 	

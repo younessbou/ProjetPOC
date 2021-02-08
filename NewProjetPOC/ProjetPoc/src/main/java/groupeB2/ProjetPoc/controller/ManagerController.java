@@ -55,6 +55,13 @@ public class ManagerController {
 		return this.managersService.Add_projet(id, projet);
 	}
 	
+	@PostMapping("/managersaddprouser/{id}")
+	Manager add_projet_to_user(@PathVariable(value = "id") Long id, @RequestBody String request) {
+		JSONObject obj = new JSONObject(request);
+		Long id1=obj.getLong("id1");
+		Long id2=obj.getLong("id2");
+		return this.managersService.Add_projet_to_user(id, id1,id2);
+	}
 	@GetMapping("/managers/times/{id}")
 	Set<Temps> findAlltime(@PathVariable Long id){
 		return this.managersService.findAllTime(id);
