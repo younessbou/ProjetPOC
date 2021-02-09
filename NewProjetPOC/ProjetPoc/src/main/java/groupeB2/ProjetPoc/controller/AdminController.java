@@ -38,6 +38,10 @@ public class AdminController {
 		return this.adminService.findAllAdmin();
 	}
 	
+	@PatchMapping("/admin/Adtoma/{id}")
+	Admin changeManagerToAdmin(@PathVariable Long id) {
+		return this.adminService.changeManagerToAdmin(id);
+	}
 	//Id1 l'id du user Id2 id du nouveau manager
 	@PatchMapping("/admin/ChangeManager")
 	User changeManager(@RequestBody String request) {

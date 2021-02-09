@@ -16,6 +16,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -79,5 +80,14 @@ private @Id @GeneratedValue long id;
 		user.setManager(this);
 		this.getUsers().add(user);
 	}
+	
+	public void removeUser(User user) {
+        users.remove(user);
+        user.setManager(null);
+    }
 
+	 public void removeProject(Projet projet) {
+	        projets.remove(projet);
+	        projet.setManager(null);
+	    }
 }

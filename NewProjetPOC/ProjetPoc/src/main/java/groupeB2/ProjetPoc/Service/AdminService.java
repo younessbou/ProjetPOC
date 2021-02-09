@@ -20,4 +20,6 @@ public interface AdminService {
 
 	Admin changeUserToAdmin(Long id);
 
+	Admin changeManagerToAdmin(Long id);
+
 }

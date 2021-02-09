@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import groupeB2.ProjetPoc.Service.AdminService;
 import groupeB2.ProjetPoc.dao.AdminRepository;
 import groupeB2.ProjetPoc.dao.ManagerRepository;
+import groupeB2.ProjetPoc.dao.ProjetRepository;
 import groupeB2.ProjetPoc.dao.UserRepository;
 import groupeB2.ProjetPoc.domain.Admin;
 import groupeB2.ProjetPoc.domain.Manager;
@@ -33,6 +34,8 @@ public class AdminImpl implements AdminService{
 	private UserRepository userRepository;
 	@Autowired
 	private AdminRepository adminRepository;
+	@Autowired
+	private ProjetRepository projetRepository;
 	
 	@Override
 	@Transactional
@@ -78,6 +81,22 @@ public class AdminImpl implements AdminService{
 		String password=user.getPassword();
 		String login=user.getLogin();
 		userRepository.deleteById(id);
+		Admin admin=new Admin(nom,prenom,password,login);
+		adminRepository.save(admin);
+		return admin;
+	}
+
+	@Override
+	public Admin changeManagerToAdmin(Long id) {
+		Manager manager=managerRepository.getOne(id);
+		String nom=manager.getNom();
+		String prenom=manager.getPrenom();
+		String password=manager.getPassword();
+		String login=manager.getLogin();
+		
+		manager.getUsers().forEach(user->user.setManager(null)); 
+		manager.getProjets().forEach(projet->projetRepository.delete(projet));
+		managerRepository.deleteById(id);
 		Admin admin=new Admin(nom,prenom,password,login);
 		adminRepository.save(admin);
 		return admin;
