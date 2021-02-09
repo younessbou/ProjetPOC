@@ -128,5 +128,24 @@ public class LoadDatabase {
 		projet2.setNom("POCb");
 		projetRepository.save(projet2);
 	}
+	@Bean
+	@Profile("test")
+	CommandLineRunner initTestDatabase(ProjetRepository projetRepository, TempsRepository tempsRepository, UserRepository userRepository, ManagerRepository managerRepository,AdminRepository adminRepository ) {
+		
+		return args -> {			
+			initProjet(projetRepository);
+			
+			initTemps(tempsRepository);				
+			
+			initUser(userRepository);
+			
+			initManager(managerRepository);
+			
+			initAdmin(adminRepository);
+			
+			
+		};
+		
+	}
 	
 }

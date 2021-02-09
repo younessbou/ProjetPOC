@@ -39,7 +39,6 @@ public class ManagerController {
 	Manager add_user(@PathVariable(value = "id") Long id, @RequestBody String request) {
 		JSONObject obj = new JSONObject(request);
 		String nom=obj.getString("nom");
-	
 		String prenom = obj.getString("prenom");
 		String password = obj.getString("password");
 		String login = obj.getString("login");
