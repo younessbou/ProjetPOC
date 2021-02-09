@@ -1,6 +1,7 @@
 package groupeB2.ProjetPoc.Impl;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.OneToMany;
@@ -18,6 +19,7 @@ import groupeB2.ProjetPoc.dao.UserRepository;
 import groupeB2.ProjetPoc.domain.Admin;
 import groupeB2.ProjetPoc.domain.Manager;
 import groupeB2.ProjetPoc.domain.Projet;
+import groupeB2.ProjetPoc.domain.Temps;
 import groupeB2.ProjetPoc.domain.User;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -58,10 +60,27 @@ public class AdminImpl implements AdminService{
 	public User changeManager(Long id1, Long id2) {
 		User user=userRepository.getOne(id1);
 		Manager manager=managerRepository.getOne(id2);
-		manager.addUser(user);
+		user.setManager(manager);
+		Set<Projet> projets=new HashSet<>();
+		user.setProjets(projets);
+		Set<Temps> tempss=new HashSet<>();
+		user.setTempss(tempss);
 		userRepository.save(user);
-		managerRepository.save(manager);
-		return user;
+
+		return null;
+	}
+
+	@Override
+	public Admin changeUserToAdmin(Long id) {
+		User user=userRepository.getOne(id);
+		String nom=user.getNom();
+		String prenom=user.getPrenom();
+		String password=user.getPassword();
+		String login=user.getLogin();
+		userRepository.deleteById(id);
+		Admin admin=new Admin(nom,prenom,password,login);
+		adminRepository.save(admin);
+		return admin;
 	}
 
 	

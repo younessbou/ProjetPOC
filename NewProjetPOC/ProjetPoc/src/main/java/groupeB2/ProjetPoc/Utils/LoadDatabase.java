@@ -40,29 +40,37 @@ public class LoadDatabase {
 			albert.setPrenom("albert");
 			albert.setPassword("ez");
 			
-			
-			Projet projet1= new Projet();
-			projet1.setNom("POCa");
-			projetRepository.save(projet1);		
-			Temps temp1= new Temps();
-			
-			temp1.setNbhours(2);
-			tempsRepository.save(temp1);
-			albert.addProjet(projet1);
-
-			userRepository.save(albert);
-			tempsRepository.save(temp1);	
+				
 			Manager manager1 = new Manager();
 			manager1.setLogin("man2");
 			manager1.setNom("mana2");
 			manager1.setPrenom("aze2");
 			manager1.setPassword("azerty2");
-			manager1.addProjet(projet1);
-			manager1.addUser(albert);
 			managerRepository.save(manager1);
+			Projet projet1= new Projet();
+			projet1.setNom("POCa");
+			manager1.addProjet(projet1);
 			projetRepository.save(projet1);	
+			manager1.addUser(albert);
 			userRepository.save(albert);
+			managerRepository.save(manager1);	
+			projet1.addUser(albert);
+			projetRepository.save(projet1);
+			userRepository.save(albert);
+			System.out.println(projet1.getUsers());
+			Temps temps2=new Temps();
+			temps2.setNbhours(2L);
+			tempsRepository.save(temps2);
+			albert.addTime(temps2, projet1);
+			userRepository.save(albert);
+			tempsRepository.save(temps2);
 			
+			Manager manager5 = new Manager();
+			manager5.setLogin("man5");
+			manager5.setNom("mana5");
+			manager5.setPrenom("aze5");
+			manager5.setPassword("azerty5");
+			managerRepository.save(manager5);
 		};
 		
 	}

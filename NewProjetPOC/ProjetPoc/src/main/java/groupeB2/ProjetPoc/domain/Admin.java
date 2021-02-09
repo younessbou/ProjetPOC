@@ -19,9 +19,17 @@ import lombok.ToString;
 public class Admin {
 	
 	private @Id @GeneratedValue long id;
+	
 	private String nom;
 	private String prenom;
 	private String password;
 	private String login;
 	
+	public Admin(String nom, String prenom, String password, String login) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.password = password;
+		this.login = login;
+	}
 }

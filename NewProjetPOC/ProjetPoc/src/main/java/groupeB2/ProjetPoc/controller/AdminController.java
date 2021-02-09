@@ -3,6 +3,7 @@ package groupeB2.ProjetPoc.controller;
 
 import java.util.Collection;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,11 +25,14 @@ public class AdminController {
 	private AdminService adminService;
 	
 	//Indiquer l'ID du user que l'on passe manager
-	@PatchMapping("/admin/Matous")
+	@PatchMapping("/admin/Matous/{id}")
 	Manager changeUserToManager(@PathVariable Long id) {
 		return this.adminService.changeUserToManager(id);
 	}
-	
+	@PatchMapping("/admin/Matoad/{id}")
+	Admin changeUserToAdmin(@PathVariable Long id) {
+		return this.adminService.changeUserToAdmin(id);
+	}
 	@GetMapping("/admin")
 	Collection<Admin> findAllAdmin() {
 		return this.adminService.findAllAdmin();
@@ -36,7 +40,12 @@ public class AdminController {
 	
 	//Id1 l'id du user Id2 id du nouveau manager
 	@PatchMapping("/admin/ChangeManager")
-	User changeManager(@PathVariable Long id1, @PathVariable Long id2) {
+	User changeManager(@RequestBody String request) {
+		JSONObject obj = new JSONObject(request);
+		Long id1=obj.getLong("id1");
+		Long id2=obj.getLong("id2");
 		return this.adminService.changeManager(id1,id2);
 	}
+	
+	
 }

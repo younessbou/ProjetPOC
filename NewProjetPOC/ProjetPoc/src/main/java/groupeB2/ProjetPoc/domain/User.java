@@ -8,10 +8,16 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -21,8 +27,11 @@ import lombok.ToString;
 
 @Data
 @Entity
+@Table(indexes = {
+        @Index(name = "umanager_index", columnList = "manager_id")
+})
 public class User {
-	private @Id @GeneratedValue long id;
+	private @Id @GeneratedValue (strategy = GenerationType.IDENTITY) long id;
 	
 	private String nom;
 	private String prenom;
@@ -31,18 +40,21 @@ public class User {
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@ManyToMany
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties({"users","tempss","password","login"})
 	private Set<Projet> projets;
 	
-	@OneToMany 
+	@OneToMany (mappedBy="user", fetch = FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@JsonIgnoreProperties({"user","tempss","password","login"})
 	private Set<Temps> tempss;
 	
 	
-	@ManyToOne
+	@ManyToOne 
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@JsonIgnoreProperties({"users","tempss","projets","password","login"})
@@ -74,6 +86,15 @@ public class User {
 		time.setProjet(proj);
 		this.getTempss().add(time);
 	}
+	
+	  public void removeProject(Projet projet) {
+	        projets.remove(projet);
+	        projet.getUsers().remove(this);
+	    }
+	  public void removeTimeCheck(Temps temps) {
+	        tempss.remove(temps);
+	        temps.setUser(null);
+	    }
 	
 
 }
