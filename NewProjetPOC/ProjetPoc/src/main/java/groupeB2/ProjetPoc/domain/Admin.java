@@ -32,4 +32,8 @@ public class Admin {
 		this.password = password;
 		this.login = login;
 	}
+
+	public Admin() {
+		// TODO Auto-generated constructor stub
+	}
 }

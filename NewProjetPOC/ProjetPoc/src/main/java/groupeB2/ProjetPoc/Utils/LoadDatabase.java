@@ -7,10 +7,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import groupeB2.ProjetPoc.dao.AdminRepository;
 import groupeB2.ProjetPoc.dao.ManagerRepository;
 import groupeB2.ProjetPoc.dao.ProjetRepository;
 import groupeB2.ProjetPoc.dao.TempsRepository;
 import groupeB2.ProjetPoc.dao.UserRepository;
+import groupeB2.ProjetPoc.domain.Admin;
 import groupeB2.ProjetPoc.domain.Manager;
 import groupeB2.ProjetPoc.domain.Projet;
 import groupeB2.ProjetPoc.domain.Temps;
@@ -23,7 +25,7 @@ public class LoadDatabase {
 	
 	@Bean
 	@Profile("!test")
-	CommandLineRunner initDatabase(ProjetRepository projetRepository, TempsRepository tempsRepository, UserRepository userRepository, ManagerRepository managerRepository ) {
+	CommandLineRunner initDatabase(ProjetRepository projetRepository, TempsRepository tempsRepository, UserRepository userRepository, ManagerRepository managerRepository,AdminRepository adminRepository ) {
 		
 		return args -> {			
 			initProjet(projetRepository);
@@ -33,6 +35,8 @@ public class LoadDatabase {
 			initUser(userRepository);
 			
 			initManager(managerRepository);
+			
+			initAdmin(adminRepository);
 			
 			User albert = new User();
 			albert.setLogin("zz");
@@ -72,6 +76,17 @@ public class LoadDatabase {
 			manager5.setPassword("azerty5");
 			managerRepository.save(manager5);
 		};
+		
+	}
+
+	private void initAdmin(AdminRepository adminRepository) {
+		// TODO Auto-generated method stub
+		Admin admin1 = new Admin();
+		admin1.setLogin("admin");
+		admin1.setNom("adminnom");
+		admin1.setPrenom("adminprenom");
+		admin1.setPassword("admin");
+		adminRepository.save(admin1);
 		
 	}
 
